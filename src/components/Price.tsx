@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from "react";
 
 type Props = {
+  id: number;
   price: number;
   options?: { title: string; additionalPrice: number }[];
 };
 
-const Price = ({ price,  options }: Props) => {
+const Price = ({ id, price, options }: Props) => {
   const [total, setTotal] = useState(price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
@@ -20,8 +21,10 @@ const Price = ({ price,  options }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Total Price */}
       <h2 className="text-2xl font-bold">${total.toFixed(2)}</h2>
-     
+
+      {/* Options Buttons */}
       <div className="flex gap-4">
         {options?.map((option, index) => (
           <button
@@ -37,9 +40,9 @@ const Price = ({ price,  options }: Props) => {
           </button>
         ))}
       </div>
-    
+
+      {/* Quantity Selector and Add to Cart */}
       <div className="flex justify-between items-center">
-       
         <div className="flex justify-between w-full p-3 ring-1 ring-red-500">
           <span>Quantity</span>
           <div className="flex gap-4 items-center">
@@ -56,7 +59,7 @@ const Price = ({ price,  options }: Props) => {
             </button>
           </div>
         </div>
-        
+
         <button className="uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-500">
           Add to Cart
         </button>
